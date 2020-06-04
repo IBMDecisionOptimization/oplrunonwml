@@ -1,0 +1,43 @@
+[2020-06-04T15:45:42Z, INFO] Initialization of Products.
+[2020-06-04T15:45:42Z, INFO] Initialization of Resources.
+[2020-06-04T15:45:42Z, INFO] Initialization of NbPeriods.
+[2020-06-04T15:45:42Z, INFO] Initialization of Consumption.
+[2020-06-04T15:45:42Z, INFO] Initialization of Capacity.
+[2020-06-04T15:45:42Z, INFO] Initialization of Demand.
+[2020-06-04T15:45:42Z, INFO] Initialization of Periods.
+[2020-06-04T15:45:42Z, INFO] Initialization of Inventory.
+[2020-06-04T15:45:42Z, INFO] Initialization of InvCost.
+[2020-06-04T15:45:42Z, INFO] Initialization of InsideCost.
+[2020-06-04T15:45:42Z, INFO] Initialization of OutsideCost.
+[2020-06-04T15:45:42Z, INFO] Initialization of Inside.
+[2020-06-04T15:45:42Z, INFO] Initialization of Outside.
+[2020-06-04T15:45:42Z, INFO] Initialization of Inv.
+[2020-06-04T15:45:42Z, INFO] Initialization of Periods0.
+[2020-06-04T15:45:42Z, WARNING] : JavaScript statements are not supported.
+[2020-06-04T15:45:42Z, INFO] Initialization of ctCapacity.
+[2020-06-04T15:45:42Z, INFO] Initialization of ctDemand.
+[2020-06-04T15:45:42Z, INFO] Initialization of ctInventory.
+[2020-06-04T15:45:42Z, WARNING] Effective number of workers to be used for solve has been updated to: '1' (original value was: '0')
+[2020-06-04T15:45:42Z, INFO] Version identifier: 12.10.0.0 | 2020-01-09 | 0d94640
+[2020-06-04T15:45:42Z, INFO] CPXPARAM_Threads                                 1
+[2020-06-04T15:45:42Z, INFO] Tried aggregator 1 time.
+[2020-06-04T15:45:42Z, INFO] LP Presolve eliminated 3 rows and 3 columns.
+[2020-06-04T15:45:42Z, INFO] Reduced LP has 15 rows, 27 columns, and 51 nonzeros.
+[2020-06-04T15:45:42Z, INFO] Presolve time = 0.00 sec. (0.02 ticks)
+[2020-06-04T15:45:42Z, INFO] Iteration log . . .
+[2020-06-04T15:45:42Z, INFO] Iteration:     1   Dual objective     =            40.000000
+[2020-06-04T15:45:42Z, INFO] Initialization of Plan.
+[2020-06-04T15:45:42Z, INFO] Initialization of plan.
+[2020-06-04T15:45:42Z, INFO] plan= [[ <10 0 0>  <0 100 0>  <0 50 0>]
+[2020-06-04T15:45:42Z, INFO]          [ <0 20 0>  <0 200 0>  <0 100 0>]
+[2020-06-04T15:45:42Z, INFO]          [ <50 0 0>  <66.667 33.333 0>  <66.667 33.333 0>]]
+[2020-06-04T15:45:42Z, INFO] Initialization of OutsideSolutionT.
+[2020-06-04T15:45:42Z, INFO] Initialization of InvSolution.
+[2020-06-04T15:45:42Z, INFO] Initialization of InvSolutionT.
+[2020-06-04T15:45:42Z, INFO] Initialization of OutsideSolution.
+[2020-06-04T15:45:42Z, INFO] Initialization of InsideSolution.
+[2020-06-04T15:45:42Z, INFO] Initialization of InsideSolutionT.
+[2020-06-04T15:45:42Z, WARNING] OPL type: 'ARRAY' in post-processing is not supported for output data on the Cloud. OPL element: 'Plan' will not be exported.
+[2020-06-04T15:45:42Z, INFO] attachment : solution.json
+[2020-06-04T15:45:42Z, INFO] Total time spent in post processing: 4 msecs.
+[2020-06-04T15:45:42Z, INFO] Solve finished with status: OPTIMAL_SOLUTION.

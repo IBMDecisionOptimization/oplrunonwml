@@ -1,0 +1,32 @@
+// --------------------------------------------------------------------------
+// Licensed Materials - Property of IBM
+//
+// 5725-A06 5725-A29 5724-Y48 5724-Y49 5724-Y54 5724-Y55
+// Copyright IBM Corporation 1998, 2013. All Rights Reserved.
+//
+// Note to U.S. Government Users Restricted Rights:
+// Use, duplication or disclosure restricted by GSA ADP Schedule
+// Contract with IBM Corp.
+// --------------------------------------------------------------------------
+
+Products =  { kluski capellini fettuccine };
+Resources = { flour eggs };
+NbPeriods = 3;
+
+Consumption = [
+                [ 0.5, 0.4, 0.3 ],
+                [ 0.2, 0.4, 0.6 ]
+              ];
+Capacity = [ 20, 40 ];
+Demand = [
+           [ 10 100 50 ]
+           [ 20 200 100]
+           [ 50 100 100]
+         ];
+Inventory = [ 0 0 0];
+InvCost = [ 0.1 0.2 0.1];  
+InsideCost = [ 0.4, 0.6, 0.1 ];
+OutsideCost  = [ 0.8, 0.9, 0.4 ];
+
+
+

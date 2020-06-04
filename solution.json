@@ -1,0 +1,125 @@
+{
+  "InvSolution" : [ {
+    "Products" : "kluski",
+    "Periods0" : 0,
+    "value" : 0.0
+  }, {
+    "Products" : "kluski",
+    "Periods0" : 1,
+    "value" : 0.0
+  }, {
+    "Products" : "kluski",
+    "Periods0" : 2,
+    "value" : 0.0
+  }, {
+    "Products" : "kluski",
+    "Periods0" : 3,
+    "value" : 0.0
+  }, {
+    "Products" : "capellini",
+    "Periods0" : 0,
+    "value" : 0.0
+  }, {
+    "Products" : "capellini",
+    "Periods0" : 1,
+    "value" : 0.0
+  }, {
+    "Products" : "capellini",
+    "Periods0" : 2,
+    "value" : 0.0
+  }, {
+    "Products" : "capellini",
+    "Periods0" : 3,
+    "value" : 0.0
+  }, {
+    "Products" : "fettuccine",
+    "Periods0" : 0,
+    "value" : 0.0
+  }, {
+    "Products" : "fettuccine",
+    "Periods0" : 1,
+    "value" : 0.0
+  }, {
+    "Products" : "fettuccine",
+    "Periods0" : 2,
+    "value" : 0.0
+  }, {
+    "Products" : "fettuccine",
+    "Periods0" : 3,
+    "value" : 0.0
+  } ],
+  "OutsideSolution" : [ {
+    "Products" : "kluski",
+    "Periods" : 1,
+    "value" : 0.0
+  }, {
+    "Products" : "kluski",
+    "Periods" : 2,
+    "value" : 100.0
+  }, {
+    "Products" : "kluski",
+    "Periods" : 3,
+    "value" : 50.0
+  }, {
+    "Products" : "capellini",
+    "Periods" : 1,
+    "value" : 20.0
+  }, {
+    "Products" : "capellini",
+    "Periods" : 2,
+    "value" : 200.0
+  }, {
+    "Products" : "capellini",
+    "Periods" : 3,
+    "value" : 100.0
+  }, {
+    "Products" : "fettuccine",
+    "Periods" : 1,
+    "value" : 0.0
+  }, {
+    "Products" : "fettuccine",
+    "Periods" : 2,
+    "value" : 33.33333333333333
+  }, {
+    "Products" : "fettuccine",
+    "Periods" : 3,
+    "value" : 33.33333333333333
+  } ],
+  "InsideSolution" : [ {
+    "Products" : "kluski",
+    "Periods" : 1,
+    "value" : 10.0
+  }, {
+    "Products" : "kluski",
+    "Periods" : 2,
+    "value" : 0.0
+  }, {
+    "Products" : "kluski",
+    "Periods" : 3,
+    "value" : 0.0
+  }, {
+    "Products" : "capellini",
+    "Periods" : 1,
+    "value" : 0.0
+  }, {
+    "Products" : "capellini",
+    "Periods" : 2,
+    "value" : 0.0
+  }, {
+    "Products" : "capellini",
+    "Periods" : 3,
+    "value" : 0.0
+  }, {
+    "Products" : "fettuccine",
+    "Periods" : 1,
+    "value" : 50.0
+  }, {
+    "Products" : "fettuccine",
+    "Periods" : 2,
+    "value" : 66.66666666666667
+  }, {
+    "Products" : "fettuccine",
+    "Periods" : 3,
+    "value" : 66.66666666666667
+  } ]
+}
