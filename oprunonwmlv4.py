@@ -2,24 +2,37 @@ import sys, getopt
 
 try:
     sys.modules['sklearn.externals.joblib'] = __import__('joblib')
-    from watson_machine_learning_client import WatsonMachineLearningAPIClient
+    from ibm_watson_machine_learning import APIClient
 except ImportError:
-    from watson_machine_learning_client import WatsonMachineLearningAPIClient
+    from ibm_watson_machine_learning import APIClient
 
 
 # THIS IS THE USER CREDENTIALS
 wml_credentials = {
-    "apikey": "6r4NvrXYqqvKuQaABmW7Zj0OfkEK0fUsFladAkvkolqs",
-    "instance_id": "da7fead0-5bf8-4c74-86db-4954c7f16ee5",
-    "url": "https://us-south.ml.cloud.ibm.com",
+      "apikey": "xxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "url": "https://us-south.ml.cloud.ibm.com"
 }
+
+
 # END OF THE USER CREDENTIALS
+
+import base64
+def getfileasdata(filename):
+    with open(filename, 'r') as file:
+        data = file.read();
+
+    data = data.encode("UTF-8")
+    data = base64.b64encode(data)
+    data = data.decode("UTF-8")
+
+    return data
+
 
 def main(argv):
     mod_file = "mulprod.mod"
     dat_file = "mulprod.dat"
     try:
-        opts, args = getopt.getopt(argv,"hm:d:",["mfile=","dfile="])
+        opts, args = getopt.getopt(argv, "hm:d:", ["mfile=", "dfile="])
     except getopt.GetoptError:
         print('runoplonwml.py -m <mod_file> -d <dat_file>')
         sys.exit(2)
@@ -37,9 +50,44 @@ def main(argv):
     basename = mod_file.split('.')[0]
     model_name = basename + "_model"
     deployment_name = basename + "_deployment"
+    space_name = basename + "_space"
 
     print("Creating WML Client")
-    client = WatsonMachineLearningAPIClient(wml_credentials)
+    client = APIClient(wml_credentials)
+
+
+    def guid_from_space_name(client, name):
+        space = client.spaces.get_details()
+        for item in space['resources']:
+            if item['entity']["name"] == name:
+                return item['metadata']['id']
+        return None
+
+    space_id = guid_from_space_name(client, space_name)
+
+    if space_id == None:
+        print("Creating space")
+        cos_resource_crn = 'xxxxxxxxxxxxxxxxxxxxxxxxxxx'
+        instance_crn = 'xxxxxxxxxxxxxxxxxxxxxxxxxxx'
+
+        metadata = {
+            client.spaces.ConfigurationMetaNames.NAME: space_name,
+            client.spaces.ConfigurationMetaNames.DESCRIPTION: space_name + ' description',
+            client.spaces.ConfigurationMetaNames.STORAGE: {
+                "type": "bmcos_object_storage",
+                "resource_crn": cos_resource_crn
+            },
+            client.spaces.ConfigurationMetaNames.COMPUTE: {
+                "name": "existing_instance_id",
+                "crn": instance_crn
+            }
+        }
+        space = client.spaces.store(meta_props=metadata)
+        space_id = client.spaces.get_id(space)
+
+    print("space_id:", space_id)
+
+    client.set.default_space(space_id)
 
     print("Getting deployment")
     deployments = client.deployments.get_details()
@@ -47,9 +95,10 @@ def main(argv):
     deployment_uid = None
     for res in deployments['resources']:
         if res['entity']['name'] == deployment_name:
-            deployment_uid = res['metadata']['guid']
+            deployment_uid = res['metadata']['id']
             print("Found deployment", deployment_uid)
             break
+
 
     if deployment_uid == None:
         print("Creating model")
@@ -61,7 +110,6 @@ def main(argv):
             tarinfo.uname = tarinfo.gname = "root"
             return tarinfo
 
-
         tar = tarfile.open("model.tar.gz", "w:gz")
         tar.add(mod_file, arcname=mod_file, filter=reset)
         tar.close()
@@ -71,7 +119,7 @@ def main(argv):
             client.repository.ModelMetaNames.NAME: model_name,
             client.repository.ModelMetaNames.DESCRIPTION: model_name,
             client.repository.ModelMetaNames.TYPE: "do-opl_12.10",
-            client.repository.ModelMetaNames.RUNTIME_UID: "do_12.10"
+            client.repository.ModelMetaNames.SOFTWARE_SPEC_UID: client.software_specifications.get_uid_by_name("do_12.10")
         }
 
         model_details = client.repository.store_model(model='./model.tar.gz', meta_props=model_metadata)
@@ -85,7 +133,7 @@ def main(argv):
             client.deployments.ConfigurationMetaNames.NAME: deployment_name,
             client.deployments.ConfigurationMetaNames.DESCRIPTION: deployment_name,
             client.deployments.ConfigurationMetaNames.BATCH: {},
-            client.deployments.ConfigurationMetaNames.COMPUTE: {'name': 'S', 'nodes': 1}
+            client.deployments.ConfigurationMetaNames.HARDWARE_SPEC: {'name': 'S', 'nodes': 1}
         }
 
         deployment_details = client.deployments.create(model_uid, meta_props=deployment_props)
@@ -94,17 +142,10 @@ def main(argv):
 
         print('deployment_id:', deployment_uid)
 
+
     print("Creating job")
     import pandas as pd
 
-    with open(dat_file, 'r') as file:
-        data = file.read();
-    import base64
-
-    data = data.encode("UTF-8")
-    data = base64.b64encode(data)
-    data = data.decode("UTF-8")
-    df_dat = pd.DataFrame(columns=['___TEXT___'], data=[[data]])
     solve_payload = {
         client.deployments.DecisionOptimizationMetaNames.SOLVE_PARAMETERS: {
             'oaas.logAttachmentName': 'log.txt',
@@ -115,7 +156,7 @@ def main(argv):
         client.deployments.DecisionOptimizationMetaNames.INPUT_DATA: [
             {
                 "id": dat_file,
-                "values": df_dat
+                "content": getfileasdata(dat_file)
             }
         ],
         client.deployments.DecisionOptimizationMetaNames.OUTPUT_DATA: [
@@ -153,7 +194,11 @@ def main(argv):
             solution.head()
         else:
             print(output_data['id'])
-            output = output_data['values'][0][0]
+            if "values" in output_data:
+                output = output_data['values'][0][0]
+            else:
+                if "content" in output_data:
+                    output = output_data['content']
             output = output.encode("UTF-8")
             output = base64.b64decode(output)
             output = output.decode("UTF-8")
