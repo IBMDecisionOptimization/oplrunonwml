@@ -9,7 +9,7 @@ except ImportError:
 
 # THIS IS THE USER CREDENTIALS
 wml_credentials = {
-      "apikey": "xxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      "apikey": "xxxxxxxxxxxxxxxxxxxxxxxxx",
       "url": "https://us-south.ml.cloud.ibm.com"
 }
 
@@ -67,8 +67,8 @@ def main(argv):
 
     if space_id == None:
         print("Creating space")
-        cos_resource_crn = 'xxxxxxxxxxxxxxxxxxxxxxxxxxx'
-        instance_crn = 'xxxxxxxxxxxxxxxxxxxxxxxxxxx'
+        cos_resource_crn = 'xxxxxxxxxxxxxxxxxxxxxxxxx'
+        instance_crn = 'xxxxxxxxxxxxxxxxxxxxxxxxx'
 
         metadata = {
             client.spaces.ConfigurationMetaNames.NAME: space_name,

@@ -9,8 +9,8 @@ except ImportError:
 
 # THIS IS THE USER CREDENTIALS
 wml_credentials = {
-    "apikey": "xxxxxxxxxxxxxxxxxxxxxxxxxxx",
-    "instance_id": "xxxxxxxxxxxxxxxxxxxxxxxxxxx",
+    "apikey": "xxxxxxxxxxxxxxxxxxxxxxxxx",
+    "instance_id": "xxxxxxxxxxxxxxxxxxxxxxxxx",
     "url": "https://us-south.ml.cloud.ibm.com",
 }
 # END OF THE USER CREDENTIALS
