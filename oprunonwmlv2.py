@@ -9,7 +9,7 @@ except ImportError:
 
 # THIS IS THE USER CREDENTIALS
 wml_credentials = {
-      "apikey": "xxxxxxxxxxxxxxxxxxxxxxxxx",
+      "apikey": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
       "url": "https://us-south.ml.cloud.ibm.com"
 }
 
@@ -67,8 +67,8 @@ def main(argv):
 
     if space_id == None:
         print("Creating space")
-        cos_resource_crn = 'xxxxxxxxxxxxxxxxxxxxxxxxx'
-        instance_crn = 'xxxxxxxxxxxxxxxxxxxxxxxxx'
+        cos_resource_crn = 'xxxxxxxxxxxxxxxxxx'
+        instance_crn = 'xxxxxxxxxxxxxxxxxxx'
 
         metadata = {
             client.spaces.ConfigurationMetaNames.NAME: space_name,
@@ -199,9 +199,9 @@ def main(argv):
             else:
                 if "content" in output_data:
                     output = output_data['content']
-            output = output.encode("UTF-8")
-            output = base64.b64decode(output)
-            output = output.decode("UTF-8")
+                    output = output.encode("UTF-8")
+                    output = base64.b64decode(output)
+                    output = output.decode("UTF-8")
             print(output)
             with open(output_data['id'], 'wt') as file:
                 file.write(output)
