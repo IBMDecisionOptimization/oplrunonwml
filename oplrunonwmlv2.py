@@ -186,6 +186,8 @@ def main(argv):
 
     print(job_details['entity']['decision_optimization']['status']['state'])
 
+    print(job_details['entity']['decision_optimization']['solve_state']['latest_engine_activity'])
+
     for output_data in job_details['entity']['decision_optimization']['output_data']:
         if output_data['id'].endswith('csv'):
             print('Solution table:' + output_data['id'])
